@@ -1,0 +1,43 @@
+<div xmlns:th="http://www.thymeleaf.org">
+	<!-- ##### Single Product Details Area Start ##### -->
+    <section class="single_product_details_area d-flex align-items-center" th:object="${item}">
+
+        <!-- Single Product Thumb -->
+        <div class="single_product_thumb clearfix">
+            <div class="product_thumbnail_slides owl-carousel">
+            	<img th:src="@{|/assets/images/product-img/*{image}|}">
+                <img src="/assets/images/product-img/aothun2.jpg" alt="">
+            </div>
+        </div>
+
+        <!-- Single Product Description -->
+        <div class="single_product_desc clearfix">
+            <span>mango</span>
+            <a href="cart.html">
+                <h2 th:text="*{name}"></h2>
+            </a>
+            <p class="product-price"><span class="old-price">$65.00</span> $[[*{price}]]</p>
+            <p class="product-desc">Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna vehicula, nec maximus est sollicitudin.</p>
+
+            <!-- Form -->
+            <form class="cart-form clearfix" method="post">
+                <!-- Select Box -->
+                <div class="select-box d-flex mt-50 mb-30">
+                    <select name="select" id="productSize" class="mr-5">
+                        <option value="value">Size: XL</option>
+                        <option value="value">Size: X</option>
+                        <option value="value">Size: M</option>
+                        <option value="value">Size: S</option>
+                    </select>
+                </div>
+                <!-- Cart & Favourite Box -->
+                <div class="cart-fav-box d-flex align-items-center">
+                    <!-- Cart -->
+                    <button type="submit" name="addtocart" value="5" class="essence-btn">Add to cart</button>
+                    <!-- Favourite -->
+                    
+                </div>
+            </form>
+        </div>
+    </section>
+</div>

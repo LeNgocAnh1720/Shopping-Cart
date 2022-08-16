@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Order Details</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	
+	<!--Box Icon-->
+	<!-- Favicon  -->
+    <link rel="icon" href="/assets/images/core-img/favicon.ico">
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="/assets/css/core-style.css">
+    
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+	<div th:replace="/layout/_menu.html"></div>
+    
+    <div class="checkout_area section-padding-80" th:object = ${order}>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 col-md-6">
+                    <div class="checkout_details_area mt-50 clearfix">
+
+                        <div class="cart-page-heading mb-30">
+                            <h5>ORDER INFORMATION</h5>
+                        </div>
+
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <div>Order Number</div>
+									<input th:field="*{id}" class="form-control" >
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <div>Purchaser</div>
+									<input th:field="*{account.username}" class="form-control" >
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="first_name">Họ và tên: <span>*</span></label>
+                                    <div class="form-control" id="first_name" th:utext="${ac.fullname}"></div>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <div>Purchased Date</div>
+									<input th:field="*{createDate}" class="form-control" >
+                                </div>
+                            
+                            </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
+                    
+						<h6>ORDER LINES</h6>
+                        <table class="table">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Name</th>
+								<th>Price</th>
+								<th>Quantity</th>
+								<th>Amount</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!--ThĂ´ng qua order láº¥y ra orderDetails-->
+							<tr th:each="detail : *{orderDetails}" th:object="${detail}">
+								<td>[[*{product.id}]]</td>
+								<td>[[*{product.name}]]</td>
+								<td>[[*{#numbers.formatDecimal(price,0,'COMMA',2,'POINT')}]]</td>
+								<td>[[*{quantity}]]</td>
+								<td>[[*{#numbers.formatDecimal(price*quantity,0,'COMMA',2,'POINT')}]]</td>
+							</tr>
+						</tbody>
+					</table>
+	                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+  
+    
+    <footer>
+    	<div th:replace="/layout/_footer.html"></div>
+    </footer>
+	
+	
+	<!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="/assets/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="/assets/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="/assets/js/plugins.js"></script>
+    <!-- Classy Nav js -->
+    <script src="/assets/js/classy-nav.min.js"></script>
+    <!-- Active js -->
+    <script src="/assets/js/active.js"></script>
+    <script src="/assets/js/shopping-cart.js"></script>
+</body>
+</html>

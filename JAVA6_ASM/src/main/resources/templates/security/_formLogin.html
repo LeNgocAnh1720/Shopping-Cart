@@ -1,0 +1,34 @@
+<div xmlns:th="http://www.thymeleaf.org">
+	<!-- ##### Single Product Details Area Start ##### -->
+    <main id="main">
+        <div class="box">
+            <div class="form-container">
+                <div class="form-btn">
+                    <span onclick="register()">Register</span>
+                    <span onclick="login()">Login</span>
+                    <hr id="Indicator">
+                </div>
+                <form id="LoginForm" th:action="@{/security/login}" method="post">
+                    <input type="text" placeholder="Username" name="username">
+                    <input type="password" placeholder="Password" name="password">
+                    
+                    <a href=""> Forgot Password?</a>
+                    <button class="btn">Login</button>
+                    <div class="row-3">
+                        <button class="btn-1">Facebook</button>
+                        <button class="btn-1">Gmail</button>
+                    </div>
+                </form>
+                <form id="RegForm">
+                    <input type="email" placeholder="Email">
+                    <input type="text" placeholder="Username">
+                    <input type="password" placeholder="Password">
+                    <button type="submit" class="btn">Register</button>
+                </form>
+                
+                
+                
+            </div>
+        </div>
+    </main>
+</div>

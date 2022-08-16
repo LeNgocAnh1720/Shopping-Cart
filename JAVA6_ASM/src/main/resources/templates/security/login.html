@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Login</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	
+	<!--Box Icon-->
+	<!-- Favicon  -->
+    <link rel="icon" href="/assets/images/core-img/favicon.ico">
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="/assets/css/core-style.css">
+    
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+	<div th:replace="/layout/_menu.html"></div>
+    
+    
+    <div>
+    	<div th:replace="/security/_formLogin.html"></div>
+    </div>
+    
+    <div>
+    	<div th:replace="/layout/_brand.html"></div>
+    </div>
+  
+    
+    <footer>
+    	<div th:replace="/layout/_footer.html"></div>
+    </footer>
+	
+	
+	<!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="/assets/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="/assets/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="/assets/js/plugins.js"></script>
+    <!-- Classy Nav js -->
+    <script src="/assets/js/classy-nav.min.js"></script>
+    <!-- Active js -->
+    <script src="/assets/js/active.js"></script>
+    <script src="/assets/js/shopping-cart.js"></script>
+    <script>
+        var LoginForm = document.getElementById("LoginForm");
+        var RegForm = document.getElementById("RegForm");
+        var Indicator = document.getElementById("Indicator");
+		
+        function login(){
+            RegForm.style.transform = "translateX(-400px)";
+            LoginForm.style.transform = "translateX(0px)";
+            Indicator.style.transform = "translateX(125px)";
+        }
+        
+        function register(){
+            RegForm.style.transform = "translateX(450px)";
+            LoginForm.style.transform = "translateX(500px)";
+            Indicator.style.transform = "translateX(-50px)";
+        }
+
+        
+    </script>
+</body>
+</html>

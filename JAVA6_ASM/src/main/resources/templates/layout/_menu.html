@@ -1,0 +1,121 @@
+<div xmlns:th="http://www.thymeleaf.org">
+	<div>
+		<header class="header_area">
+        <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
+            <!-- Classy Menu -->
+            <nav class="classy-navbar" id="essenceNav">
+                <!-- Logo -->
+                <a class="nav-brand" th:href="@{/home/index}"><img src="/assets/images/core-img/logo.png" alt=""></a>
+                <!-- Navbar Toggler -->
+                <div class="classy-navbar-toggler">
+                    <span class="navbarToggler"><span></span><span></span><span></span></span>
+                </div>
+                <!-- Menu -->
+                <div class="classy-menu">
+                    <!-- close btn -->
+                    <div class="classycloseIcon">
+                        <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                    </div>
+                    <!-- Nav Start -->
+                    <div class="classynav">
+                        <ul>
+                            <li><a href="#">Shop</a>
+                                <ul class="dropdown">
+                                    <li><a th:each="c : ${cates}" th:href="@{|/product/list?cid=${c.id}|}">[[${c.name}]]</a></li>
+                                </ul>
+                            </li>
+                     		<th:block th:if="${#request.remoteUser}">
+	                            <li><a  th:href="@{/security/logoff}">Sign Out</a></li>
+								<li ><a  th:href="@{/order/list}">Your Orders</a></li>
+								<li th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
+									<a  th:href="@{/admin/home/index}">Admin</a>	
+								</li>
+                            </th:block>
+                            <th:block th:unless="${#request.remoteUser}"> 
+								<li> <a  th:href="@{/security/login/form}">Sign In</a> </li>
+							</th:block>
+						
+                        </ul>
+                        <ul th:if="${#request.remoteUser}">
+							<li ><a href="#">Welcome, [[${#request.remoteUser}]]</a></li>
+						</ul>
+                    </div>
+                    <!-- Nav End -->
+                </div>
+            </nav>
+
+            <!-- Header Meta Data -->
+            <div class="header-meta d-flex clearfix justify-content-end">
+                <!-- Search Area -->
+                <div class="search-area">
+                    <form action="#" method="post">
+                        <input type="search" name="search" id="headerSearch" placeholder="Type for search">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+                <!-- Favourite Area -->
+                <div class="favourite-area">
+                    <a href="#"><img src="/assets/images/core-img/heart.svg" alt=""></a>
+                </div>
+                <!-- User Login Info -->
+                <div class="user-login-info">
+                    <a th:href="@{/security/login/form}"><img src="/assets/images/core-img/user.svg" alt=""></a>
+                </div>
+                <!-- Cart Area -->
+                <div class="cart-area">
+                    <a href="#" id="essenceCartBtn"><img src="/assets/images/core-img/bag.svg" alt=""> <span>{{cart.count}}</span></a>
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <div class="cart-bg-overlay"></div>
+
+    <div class="right-side-cart-area">
+
+        <!-- Cart Button -->
+        <div class="cart-button">
+            <a href="#" id="rightSideCart"><img src="/assets/images/core-img/bag.svg" alt=""> <span>{{cart.count}}</span></a>
+        </div>
+
+        <div class="cart-content d-flex">
+
+            <!-- Cart List Area -->
+            <div class="cart-list">
+                <!-- Single Cart Item -->
+                <div class="single-cart-item" ng-repeat="item in cart.items">
+                    <a href="#" class="product-image">
+                        <img src="/assets/images/product-img/{{item.image}}" class="cart-thumb" alt="">
+                        <!-- Cart Item Desc -->
+                        <div class="cart-item-desc">
+                          <span class="product-remove"><i class="fa fa-close" aria-hidden="true" ng-click="cart.remove(item.id)"></i></span>
+                            <span class="badge">Mango</span>
+                            <h6>{{item.name}}</h6>
+                            
+                            <p class="size">Số lượng: {{item.qty}}</p>
+                            <p class="price">${{item.price}}</p>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Cart Summary -->
+            <div class="cart-amount-summary">
+
+                <h2>THANH TOÁN</h2>
+                <ul class="summary-table">
+                	<li><span>Tổng sản phẩm:</span> <span>{{cart.count}}</span></li>
+                    <li><span>Tổng tiền:</span> <span>${{cart.amount}}</span></li>
+                    <li><span>Ship:</span> <span>Free</span></li>
+                    <li><span>Tổng cộng:</span> <span>${{cart.amount}}</span></li>
+                </ul>
+                <div class="checkout-btn mt-100">
+                    <a  class="btn essence-btn" th:href="@{/order/checkout}">check out</a>
+                    <a  class="btn essence-btn" th:href="@{/cart/view}">view store</a>
+                </div>
+            </div>
+        </div>
+    </div>
+	</div>
+</div>

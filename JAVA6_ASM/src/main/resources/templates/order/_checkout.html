@@ -1,0 +1,68 @@
+<div xmlns:th="http://www.thymeleaf.org">
+	<!-- ##### Checkout Area Start ##### -->
+    <div class="checkout_area section-padding-80">
+        <div class="container">
+        	<div th:replace="~{cart/view :: shopping-cart}"></div>
+            <div class="row">
+
+                <div class="col-12 col-md-6">
+                    <div class="checkout_details_area mt-50 clearfix">
+
+                        <div class="cart-page-heading mb-30">
+                            <h5>Billing Address</h5>
+                        </div>
+
+                        <form action="#" method="post">
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <label for="username">Tên tài khoản: <span>*</span></label>
+                                    <div class="form-control" id="username">[[${#request.remoteUser}]]</div>
+                                </div>
+                                
+                                <div class="col-12 mb-3">
+                                    <label for="first_name">Họ và tên: <span>*</span></label>
+                                    <div class="form-control" id="first_name" th:utext="${ac.fullname}"></div>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="first_name">Ngày/Tháng/Năm: <span>*</span></label>
+                                    <div class="form-control">
+                                    	{{order.createDate | date :'dd-MM-yyyy'}}
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="street_address">Địa chỉ: <span>*</span></label>
+                                    <textarea class="form-control mb-3" ng-model="order.address"></textarea>
+                                    
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="street_address">Ghi chú: <span>*</span></label>
+                                    <textarea class="form-control mb-3" ></textarea>
+                                </div>
+                               
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
+                    <div class="order-details-confirmation">
+
+                        <div class="cart-page-heading">
+                            <h5>Your Order</h5>
+                            <p>The Details</p>
+                        </div>
+
+                        <ul class="order-details-form mb-4">
+                            <li><span>Product</span> <span>Total</span></li>
+                            <li><span>Subtotal</span> <span>${{cart.amount}}</span></li>
+                            <li><span>Shipping</span> <span>Free</span></li>
+                            <li><span>Total</span> <span>${{cart.amount}}</span></li>
+                        </ul>
+
+                        <a href="#" ng-click="order.purchase()" class="btn essence-btn">Place Order</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

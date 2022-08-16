@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>JAVA 6 Project</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	
+	<!--Box Icon-->
+	<!-- Favicon  -->
+    <link rel="icon" href="/assets/images/core-img/favicon.ico">
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="/assets/css/core-style.css">
+    
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+	<div th:replace="/layout/_menu.html"></div>
+    
+	<!--  ------------Cart---------------------            -->
+    <div class="small-container cart-page">
+        <table>
+            <tr>
+                <th>No.</th>
+				<th>Order No.</th>
+				<th>Order Date</th>
+				<th>Shipping Address</th>
+				<th></th>
+            </tr>
+            <tr th:each="order, state:${orders}">
+				<td>[[${state.index}]]</td>
+				<td>[[${order.id}]]</td>
+				<td>[[${order.createDate}]]</td>
+				<td>[[${order.address}]]</td>
+				<td>
+					<a th:href="@{|/order/detail/${order.id}|}" class="btn btn-default">Xem</a>
+				</td>
+			</tr>
+            
+            
+        </table>
+
+        
+    </div>
+    
+    <footer>
+    	<div th:replace="/layout/_footer.html"></div>
+    </footer>
+	
+	<!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="/assets/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="/assets/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="/assets/js/plugins.js"></script>
+    <!-- Classy Nav js -->
+    <script src="/assets/js/classy-nav.min.js"></script>
+    <!-- Active js -->
+    <script src="/assets/js/active.js"></script>
+    <script src="/assets/js/shopping-cart.js"></script>
+</body>
+</html>
